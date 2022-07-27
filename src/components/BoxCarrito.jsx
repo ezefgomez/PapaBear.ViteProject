@@ -13,11 +13,11 @@ export default function agregarArticulos () {
     }
 
 return (
-    <div style={{margin: "0", padding:"10px",color: "black", width: "250px", display:"inline-block", fontSize: "1em"}}>
+    <div style={{margin: "0", padding:"10px",color: "black", width: "250px", display: "inline-flex", fontSize: "1em", position: "relative", left: "50px"}}>
 
-        <button disabled={numero <= 1} onClick={handleMenos}> -1 </button>
-        <h1>{numero}</h1>
-        <button onClick={handleMas}> +1 </button>
+        <button disabled={numero <= 0} onClick={handleMenos} style={{display: "inline-block", margin: "4px"}}> -1 </button>
+        <h3 style={{display: "inline-block", margin: "4px"}}>{numero}</h3>
+        <button onClick={handleMas} style={{display: "inline-block", margin: "4px"}}> +1 </button>
 
     </div>
 )

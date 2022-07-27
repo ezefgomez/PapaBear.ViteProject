@@ -16,18 +16,14 @@ function App() {
           </div>
 
           <div className="container">
-            <CardArticulos backgroundColor="grey" title="Remera" price="$ 4500" description="¿Buscás una remera para tus entrenamientos o competencia? Nuestra remera  te mantiene seco y absorbe el sudor de forma super eficiente" />
-            <CardArticulos backgroundColor="grey" title="Pantalon" price="$ 6500" description="El mejor pantalon del mercado, comodo y estilizado" />
-            <CardArticulos backgroundColor="grey" title="Buzo" price="$ 7400" description="Tenes frío, nosotros tenemos los mejores buzos" />
-            <CardArticulos backgroundColor="grey" title="Zapatillas" price="$ 11200" description="Las zapatillas más comodas del mercado" />
+            <CardArticulos backgroundColor="grey" title="Remera" price="$ 4500" description="¿Buscás una remera para tus entrenamientos o competencia? Nuestra remera  es para vos" stock="12" />
+            <CardArticulos backgroundColor="grey" title="Pantalon" price="$ 6500" description="El mejor pantalon del mercado, comodo y estilizado" stock="5" />
+            <CardArticulos backgroundColor="grey" title="Buzo" price="$ 7400" description="Tenes frío, nosotros tenemos los mejores buzos" stock="7" />
+            <CardArticulos backgroundColor="grey" title="Zapatillas" price="$ 11200" description="Las zapatillas más comodas del mercado" stock="3" />
           </div>
 
           <div>
             <Novedades />
-          </div>
-            
-          <div className="container">
-            <BoxCarrito />
           </div>
 
         </div>
