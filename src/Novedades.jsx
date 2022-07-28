@@ -1,6 +1,31 @@
 import React from 'react'
 import CardArticulos from './cardArticulos'
 
+const imprimirArticulos = () => {
+    return new Promise ((resolve, reject) => {
+        setTimeout(() => {
+            let articulo = {
+                backgroundColor: "#89DFDC",
+                title: "Remera escote en V",
+                price: "$ 3500",
+                description: "Muy buena remera con estampado de Bugs Bunny",
+                stock: "23"
+            }
+        resolve(articulo)
+        }, 3000)
+    })
+}
+
+imprimirArticulos()
+    .then((result) => {
+        console.log(result)
+    }).
+    catch((err) => {
+        console.log("Productos en venta")
+    })
+
+
+
 const Novedades = () => {
     return (
         <div>
