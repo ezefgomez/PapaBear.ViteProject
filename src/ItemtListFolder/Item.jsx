@@ -1,12 +1,12 @@
 import React from 'react'
 import BoxCarrito from '../components/BoxCarrito'
 
-export default function Item({ item }) {
+export default function Item({ producto }) {
 
     return (
         <>
             <div style={{width: "200px", height: "300px", margin: "5px", backgroundColor: "grey", border: "1px solid black"}}>
-                {JSON.stringify(item)}
+                {JSON.stringify(producto)}
                 <BoxCarrito />
             </div>
         </>
