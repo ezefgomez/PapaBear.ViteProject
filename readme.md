@@ -1,0 +1,1 @@
+Mi aplicación se trata de un ecommerce sobre venta de ropa, accesorios y articulos de distintos Hobbies.
