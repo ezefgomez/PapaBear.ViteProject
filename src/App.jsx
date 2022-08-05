@@ -24,6 +24,8 @@ function App() {
 
             <ItemListContainer />
 
+            <ItemCount stock={10} />
+
             </Content>
 
           </BrowserRouter>
