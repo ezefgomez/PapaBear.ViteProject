@@ -1,36 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import ItemDetail from './ItemDetail'
+import { useParams } from 'react-router-dom'
 
 export default function ItemDetailContainer() {
 
-    const [tienda, setTienda] = useState({})
-    const {idCategoria} = useParams()
+    const [productos, setProductos] = useState(null)
+    const [error, setError] = useState(false)
+    const {productoId} = useParams()
 
-    useEffect(() => {
+    const getProductosById = () => {
+        fetch(`productos.json/${id}`)
+        .then(productosData => productosData.json)
+        .then(data => setProductos({ title: data.title }))
+        .catch(err => setError("Error fetching productos"))
+    }
 
-    let productos = [
-        {id:1, title:"Remera" , price: "$ 4500", imagen: "/", description: "¿Buscás una remera para tus entrenamientos o competencia? Nuestra remera  es para vos", idCategoria: "Vestimenta", stock: "12"},
-        {id:2, title:"Pantalon" , price: "$ 6500", imagen: "/", description: "El mejor pantalon del mercado, comodo y estilizado", idCategoria: "Vestimenta", stock: "5"},
-        {id:3, title:"Buzo", price: "$ 7400", imagen: "/", description: "Tenes frío, nosotros tenemos los mejores buzos", idCategoria: "Vestimenta-Abrigo", stock: "7"},
-        {id:4, title:"Tabaquera" , price: "$ 2500", imagen: "/", description: "Las tabaqueras más facheras del mercado", idCategoria: "Accesorio", stock: "3"}
-    ]
+    useEffect (() => {
+        getProductosById(productoId)
+    }), [productoId]
 
-    const miPromesa = new Promise((res, rej) => {
-        setTimeout(() => {
-            if(!idCategoria){
-                res(productos)
-            } else {
-                res(productos.filter((producto) => producto.idCategoria === idCategoria))
-            }
-
-        }, 2000)
-    })
-
-    miPromesa.then((res) => {
-        setTienda(res)
-    })
-}, [tienda, setTienda, idCategoria])
-
-return <ItemDetail tienda={tienda} />
+return (
+    <div style={containerStyle}>
+        <h2> LISTA DE PRODUCTOS </h2>
+        <ItemList productos={productos} />
+    </div>
+)
 
 }

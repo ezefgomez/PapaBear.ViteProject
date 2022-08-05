@@ -1,37 +1,45 @@
 import React, { useEffect, useState } from 'react'
+import productosJSON from "../data/productos.json"
 import ItemList from './ItemList'
 import { useParams } from 'react-router-dom'
 
+const containerStyle = {
+    color: "white",
+    height: "94,5%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    background: "grey"
+}
+
 export default function ItemListContainer() {
 
-    const [tienda, setTienda] = useState([])
-    const {idCategoria} = useParams()
+    const [productos, setProductos] = useState([])
+    const {Categoria} = useParams()
 
     useEffect(() => {
+        const miPromesa = new Promise((res, rej) => {
+            setTimeout(() => {
+                if (!Categoria) res(productosJSON)
+                else res(productosJSON.filter(producto => producto.categorias.includes(Categoria)))
+                res(productosJSON)
+            }, 2000)
+        })
+        miPromesa
+        .then ((res) => setProductos(res))
+        .catch((err) => console.log(err))
+    }, [Categoria])
 
-    let productos = [
-        {id:1, title:"Remera" , price: "$ 4500", imagen: "/", description: "¿Buscás una remera para tus entrenamientos o competencia? Nuestra remera  es para vos", idCategoria: "Vestimenta", stock: "12"},
-        {id:2, title:"Pantalon" , price: "$ 6500", imagen: "/", description: "El mejor pantalon del mercado, comodo y estilizado", idCategoria: "Vestimenta", stock: "5"},
-        {id:3, title:"Buzo", price: "$ 7400", imagen: "/", description: "Tenes frío, nosotros tenemos los mejores buzos", idCategoria: "Vestimenta-Abrigo", stock: "7"},
-        {id:4, title:"Tabaquera" , price: "$ 2500", imagen: "/", description: "Las tabaqueras más facheras del mercado", idCategoria: "Accesorio", stock: "3"}
-    ]
+    return (
+        <div style={containerStyle}>
 
-    const miPromesa = new Promise((res, rej) => {
-        setTimeout(() => {
-            if(!idCategoria){
-                res(productos)
-            } else {
-                res(productos.filter((producto) => producto.idCategoria === idCategoria))
-            }
+        <h2> Lista de productos </h2>
 
-        }, 2000)
-    })
+        <h3> {Categoria} </h3>
 
-    miPromesa.then((res) => {
-        setTienda(res)
-    })
-}, [tienda, setTienda, idCategoria])
+        <ItemList productos={productos} /> 
 
-return <ItemList tienda={tienda} />
-
+        </div>
+    )
 }

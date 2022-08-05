@@ -1,12 +1,24 @@
 import React from 'react'
-import Item from './Item'
+import Producto from './Producto'
+import styled from 'styled-components'
 
-export default function ItemList({tienda}) {
+export default function ItemList({ productos }) {
     return (
         <>
-            {tienda.map((producto) => (
-                <Item key={producto.id} producto={producto} />
-            ))}
+            <Box>
+                <h2> Lista de productos </h2>
+                        {productos.map((product) => {
+                            return <Producto key={product.id} {...product} />
+                        })}
+            </Box>
         </>
     )
 }
+
+const Box = styled.div`
+    width: 100%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
